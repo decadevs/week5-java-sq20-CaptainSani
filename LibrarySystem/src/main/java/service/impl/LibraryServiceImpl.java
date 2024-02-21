@@ -1,41 +1,48 @@
 package service.impl;
 
-import enums.Books;
 import model.Library;
 import model.User;
 import model.UserComparator;
 import service.LibraryService;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class LibraryServiceImpl implements LibraryService {
 
-    PriorityQueue<User> UserOnQueue;
+    PriorityQueue<User> userQueue;
+    Queue<User> userQueueFIFO;
 
     public LibraryServiceImpl(){
-        UserOnQueue = new PriorityQueue<>(new UserComparator());
+        userQueue = new PriorityQueue<>(new UserComparator());
+
+        userQueueFIFO = new LinkedList<>();
     }
 
     @Override
     public void addUserToQueue(User user){
-        UserOnQueue.add(user);
+        userQueue.add(user);
+        userQueueFIFO.add(user);
+
     }
 
     @Override
     public String giveBook(Library library) {
-        if (UserOnQueue.isEmpty()) {
+        if (userQueue.isEmpty()) {
             return "No user is on the queue";
         }
-        User user = UserOnQueue.poll();
-        return user.getName() + " has taken " + Books.PYTHON + " Book";
+        User user = userQueue.poll();
+        return user.getName() + " has taken " + library.getBooks() + " Book";
     }
 
-//    @Override
-//    public String returnBook(Library library) {
-//        if(UserOnQueue.isEmpty()){
-//            return "No user is on the queue";
-//        }
-//        User user = UserOnQueue.poll();
-//        return user.getName()+" has taken "+ Books.PYTHON + " Book already";
-//    }
+    @Override
+    public String giveBookFIFO(Library library) {
+        if (userQueueFIFO.isEmpty()) {
+            return "No user is on the queue";
+        }
+        User user = userQueueFIFO.poll();
+        return user.getName() + " has taken " + library.getBooks() + " Book";
+    }
+
 }

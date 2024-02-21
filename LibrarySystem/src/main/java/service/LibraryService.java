@@ -9,4 +9,7 @@ public interface LibraryService {
 
 
     public String giveBook(Library library);
+
+    public String giveBookFIFO(Library library);
+
 }

@@ -6,38 +6,49 @@ import service.impl.LibraryServiceImpl;
 
 public class MainClass {
     public static void main(String[] args) {
-        User u1 = new User("sani dogo",false,true,false);
-        User u2 = new User("isi nnwobi",true,false,false);
-        User u3 = new User("master shifu",false,false,true);
-        User u4 = new User("emmanuel",true,false,false);
-        User u5 = new User("samuel",false,false,true);
+
+        //ADDING USERS
+        User u1 = new User("Jnr student Sani Dogo",false,true,false);
+        User u2 = new User("Teacher Isi Nnwobi",true,false,false);
+        User u3 = new User("Snr student Master Shifu",false,false,true);
+        User u5 = new User("Snr student Samuel",false,false,true);
 
 
+
+        //IMPLEMENTATION 1
 
         LibraryServiceImpl libraryService = new LibraryServiceImpl();
 
-        Library library1 = new Library(Books.PYTHON);
-        Library library2 = new Library(Books.JAVA);
+        Library library1 = new Library(Books.JAVA);
+
+        //ADDING USER TO QUEUE
+        libraryService.addUserToQueue(u1);
+        libraryService.addUserToQueue(u2);
+        libraryService.addUserToQueue(u3);
+        libraryService.addUserToQueue(u5);
+
+
+        //GIVE BOOK
+        System.out.println(libraryService.giveBook(library1));
+        System.out.println(libraryService.giveBook(library1));
+        System.out.println(libraryService.giveBook(library1));
+        System.out.println(libraryService.giveBook(library1));
+        System.out.println(libraryService.giveBook(library1));
+
+        //RETURN BOOK
+
+
+        //IMPLEMENTATION 2
+
 
         libraryService.addUserToQueue(u1);
         libraryService.addUserToQueue(u2);
         libraryService.addUserToQueue(u3);
-        libraryService.addUserToQueue(u4);
-        libraryService.addUserToQueue(u5);
 
-
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library1));
-        System.out.println(libraryService.giveBook(library2));
-//        System.out.println(libraryService.giveBook(library3));
-//        System.out.println(libraryService.giveBook(library4));
-//        System.out.println(libraryService.giveBook(library5));
-//        System.out.println(libraryService.giveBook(library2));
-//        System.out.println(libraryService.giveBook(library4));
+        System.out.println("*******************");
+        System.out.println(libraryService.giveBookFIFO(library1));
+        System.out.println(libraryService.giveBookFIFO(library1));
+        System.out.println(libraryService.giveBookFIFO(library1));
+        System.out.println(libraryService.giveBookFIFO(library1));
     }
 }
